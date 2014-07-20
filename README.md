@@ -1,7 +1,7 @@
 Express with CoffeeScript
 =========================
 
-This example project includes a setup for using coffeescript in express.js in the backend
+This setup includes a setup for using coffeescript in express.js in the backend.
 
 ## Features
 
@@ -78,9 +78,20 @@ To use a controller in the app and route accordingly, set `urlRoot` property in 
 
 ## Dependencies
 
-This project requires CoffeeScript and MongoDB installed locally
-By default, templates are using jade, and stylesheets are using stylus
+This project requires CoffeeScript and MongoDB installed locally.
+By default, templates are using jade, and stylesheets are using stylus.
+
+### Running Mongo
+
+Once you have MongoDB installed, assuming you have mongo scripts in your $PATH, these commands can start the database:
+
+    $ mkdir data
+    $ mkdir data/db
+    $ mongod --dbpath ./data
+
+The mongo console can be used with `$ mongo`
 
 ## Using
 
 To use this setup, run `git clone git://github.com/djwatt5/express-coffee.git`
+Create directory for models: `$ mkdir app/models`
