@@ -1,6 +1,12 @@
+# Project
 *.log
 node_modules/
 data/
+
+# OS X
 .DS_Store
 Icon
 Icon?
+
+# Compiled assets
+*.css
