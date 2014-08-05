@@ -7,5 +7,4 @@ route = (app, name, options) ->
 
 module.exports = (app) ->
   route app, 'application-controller'
-  route app, 'zombie-controller', rest:true
   return

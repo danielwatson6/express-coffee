@@ -12,8 +12,6 @@ class Controller
   urlRoot: ''
   model: null
   
-  update: (req, res) ->
-  
   # Create a router object and return it
   router: (options) ->
     router = express.Router()
