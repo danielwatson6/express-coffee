@@ -11,12 +11,11 @@ In the `app` directory, you can find subfolders for models, views, and controlle
 
 Models use mongoose. Example model:
     
-    # app/models/zombie.coffee
-    
     mongoose = require 'mongoose'
 
     ZombieSchema = new mongoose.Schema
       name: String
+      age: Number
       graveyard: String
 
     module.exports = mongoose.model('Zombie', ZombieSchema)
@@ -32,43 +31,8 @@ The `Controller` class in the `lib` folder includes CRUD operations and a `route
 
     class ZombieController extends Controller
       urlRoot: '/zombies'
-      
-      index: (req, res) ->
-        Zombie.find( (err, zombies) ->
-          if err then res.send(err)
-          res.json(zombies)
-        )
-      
-      show: (req, res) ->
-        Zombie.findById( req.params.id, (err, zombie) ->
-          if err then res.send(err)
-          res.json(zombie)
-        )
-      
-      create: (req, res) ->
-        zombie = new Zombie
-        zombie.name = req.body.name
-        zombie.graveyard = req.body.graveyard
-        zombie.save (err) ->
-          if err then res.send(err)
-          res.json(message: "Zombie created!")
-      
-      update: (req, res) ->
-        Zombie.findById(req.params.id, (err, zombie) ->
-          if err then res.send(err)
-          zombie.name = req.body.name
-          zombie.graveyard = req.body.graveyard
-          zombie.save (err) ->
-            if err then res.send(err)
-            res.json(message: "Zombie updated!")
-        )
-      
-      destroy: (req, res) ->
-        Zombie.remove(_id: req.params.id, (err, zombie) ->
-          if err then res.send(err)
-          res.json(message: "Zombie destroyed!")
-        )
-    
+      model: Zombie
+
     module.exports = ZombieController
 
 To use a controller in the app and route accordingly, set `urlRoot` property in controller and add the controller to the app file:

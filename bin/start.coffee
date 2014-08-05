@@ -1,5 +1,10 @@
 #!/usr/bin/env node
-app = require '../app'
+app        = require '../config/app'
+startDB    = require '../config/db'
+useRoutes  = require '../config/routes'
+
+startDB()
+useRoutes(app)
 
 port = process.env.PORT or 3000
 app.set('port', port)

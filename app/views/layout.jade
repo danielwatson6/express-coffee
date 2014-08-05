@@ -1,7 +1,11 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet' href='/stylesheets/style.css')
+    title Insta for Zombies
+    != css('main')
   body
-    block content
+    #app.container
+      block content
+    != js('main')
+    script.
+      App.zombies = new App.Collections.Zombies(!{zombies})
