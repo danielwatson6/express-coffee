@@ -7,7 +7,12 @@ bodyParser    = require 'body-parser'
 stylus        = require 'stylus'
 connectAssets = require 'connect-assets'
 paths         = require './paths'
+routes        = require './routes'
 expressCoffee = require '../lib/express-coffee'
+
+route = (app, name, options) ->
+  Controller = require "#{paths.controllers}/#{name}"
+  app.use (new Controller).router(options)
 
 # App setup
 app = express()
@@ -33,5 +38,12 @@ app.use expressCoffee
 app.use connectAssets
   paths: [paths.javascripts, paths.stylesheets, paths.templates]
 
+# Routes
+for r of routes
+  options = {}
+  options.method = r.split(' ')[0]
+  options.path   = r.split(' ')[1]
+  options.action = routes[r].split('#')[1]
+  route(app, routes[r].split('#')[0], options)
 
 module.exports = app

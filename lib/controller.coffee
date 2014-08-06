@@ -15,8 +15,9 @@ class Controller
   # Create a router object and return it
   router: (options) ->
     router = express.Router()
-    # Use Rest API if specified
-    if options and options.rest
+    # Build Rest API if specified
+    if options.method is 'resource'
+      @urlRoot = options.path
       router.route(@urlRoot)
         .get( (req, res) =>
           @model.find (err, models) ->
@@ -53,7 +54,7 @@ class Controller
             if err then res.send(err)
         )
     else
-      router.get(@urlRoot, @index)
+      router.route(options.path)[options.method]( @[options.action] )
     router
 
 module.exports = Controller
