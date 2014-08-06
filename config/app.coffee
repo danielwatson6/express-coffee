@@ -9,10 +9,12 @@ connectAssets = require 'connect-assets'
 paths         = require './paths'
 routes        = require './routes'
 expressCoffee = require '../lib/express-coffee'
+buildRouter   = require '../lib/build-router'
 
 route = (app, name, options) ->
-  Controller = require "#{paths.controllers}/#{name}"
-  app.use (new Controller).router(options)
+  controller = require "#{paths.controllers}/#{name}"
+  options.action = controller[options.action]
+  app.use buildRouter(options)
 
 # App setup
 app = express()

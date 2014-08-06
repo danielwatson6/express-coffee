@@ -1,7 +1,3 @@
-Controller = require '../../lib/controller'
-
-class ApplicationController extends Controller
+module.exports =
   hi: (req, res) ->
     res.render('index')
-
-module.exports = ApplicationController
