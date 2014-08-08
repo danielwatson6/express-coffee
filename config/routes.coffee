@@ -1,2 +1,3 @@
 module.exports =
-  'get /' : 'application-controller#hi'
+  'get /'             : 'application-controller#hi'
+  'resource /zombies' : 'zombie-controller'
